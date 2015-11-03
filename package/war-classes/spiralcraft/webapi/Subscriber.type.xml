@@ -1,0 +1,7 @@
+<meta:Type
+  xmlns:meta="class:/spiralcraft/data/types/meta/"
+  >
+  <description>An API Subscriber is the entity that deploys clients that use
+    an API through one or more key subscriptions.
+  </description>
+</meta:Type>

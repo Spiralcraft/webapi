@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0">
+  <info organisation="spiralcraft" module="webapi">
+  </info> 
+  
+  <publications>
+    <artifact name="spiralcraft-webapi" type="package" ext="zip"/>
+  </publications> 
+    
+  <dependencies>   
+    <dependency org="spiralcraft"  name="webapp"  rev="[0.4.17-dev1,0.5-dev[" />
+  </dependencies>
+
+</ivy-module>

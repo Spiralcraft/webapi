@@ -1,0 +1,22 @@
+<meta:Type
+  xmlns:meta="class:/spiralcraft/data/types/meta/"
+  >
+  <description>A Subscription represents the publishing of an API to one or 
+    more clients via the use of a single API key.
+  </description>
+  
+  <fields>
+    <meta:Field>
+      <name>apiKey
+      </name>
+      <type><String.type/>
+      </type>
+    </meta:Field>
+    <meta:Field>
+      <name>sharedSecret
+      </name>
+      <type><String.type/>
+      </type>
+    </meta:Field>
+  </fields>
+</meta:Type>

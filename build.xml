@@ -1,0 +1,18 @@
+<project name="spiralcraft-webapi" default="pack" basedir=".">
+  <property file="build-local.properties"/>
+	
+  <property name="organization" value="spiralcraft"/>
+  <property name="module" value="webapi"/>
+  <property name="buildVersion" value="0.4.17-dev1"/>
+  <property name="build.status" value="integration"/>
+
+  <property name="publish.resolver.type" value="distrib"/>  
+  <property name="package.spiralcraft-jsclient.dest" value="lib"/>
+
+  <property name="depends.dir" location="../../repo"/>
+  <property file="../../build.local/build.properties"/>
+  <import file="../../build/build-common.xml"/>
+	
+
+
+</project>
