@@ -4,4 +4,12 @@
   <description>An API Subscriber is the entity that deploys clients that use
     an API through one or more key subscriptions.
   </description>
+  <fields>
+    <meta:SequenceField>
+      <name>id
+      </name>
+      <type><String.type/>
+      </type>
+    </meta:SequenceField>  
+  </fields>
 </meta:Type>

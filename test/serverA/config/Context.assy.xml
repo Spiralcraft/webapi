@@ -1,0 +1,23 @@
+<base:Context
+  xmlns:base="context://package-base/"
+  xmlns:httpd="class:/spiralcraft/pioneer/httpd/"
+  xmlns:autofilter="class:/spiralcraft/servlet/autofilter/"
+  >
+  
+  <debug>true
+  </debug>
+  
+  <documentRoot>${spiralcraft.builder.dir}/../war
+  </documentRoot>
+  
+  <initParameters>
+    <httpd:InitParameter>
+      <name>spiralcraft.instance.rootURI
+      </name>
+      <value>${spiralcraft.builder.dir}/..
+      </value>
+    </httpd:InitParameter>
+  
+  </initParameters>
+        
+</base:Context>

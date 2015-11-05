@@ -1,0 +1,22 @@
+<meta:Schema
+  xmlns:wapi="class:/spiralcraft/webapi/"
+  xmlns:meta="class:/spiralcraft/data/types/meta/"
+  xmlns:sec="class:/spiralcraft/security/"
+  >
+  <name>spiralcraft-webapi
+  </name>
+
+  <entities>
+
+    <meta:Entity>
+      <type><wapi:Subscriber.type/>
+      </type>
+    </meta:Entity>
+
+    <meta:Entity>
+      <type><wapi:Subscription.type/>
+      </type>
+    </meta:Entity>
+    
+  </entities>
+</meta:Schema>

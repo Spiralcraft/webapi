@@ -6,6 +6,12 @@
   </description>
   
   <fields>
+    <meta:SequenceField>
+      <name>id
+      </name>
+      <type><String.type/>
+      </type>
+    </meta:SequenceField>
     <meta:Field>
       <name>apiKey
       </name>
