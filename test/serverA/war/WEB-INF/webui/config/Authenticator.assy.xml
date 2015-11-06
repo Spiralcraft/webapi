@@ -1,0 +1,10 @@
+<swa-config:Authenticator
+  xmlns:swa-config="context://code/spiralcraft-webapp/config/"
+  xmlns:sa="class:/spiralcraft/servlet/auth/"
+  >
+
+  <authModules>
+    <sa:AuthModule/>
+  </authModules>
+
+</swa-config:Authenticator>

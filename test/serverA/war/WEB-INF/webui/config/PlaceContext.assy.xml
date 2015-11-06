@@ -4,5 +4,6 @@
   >
   <plugins>
     <webapi:Plugin/>
+    <ExtAuthPlugin/>
   </plugins>
 </base:PlaceContext>

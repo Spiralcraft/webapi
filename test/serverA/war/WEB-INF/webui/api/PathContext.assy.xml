@@ -7,11 +7,25 @@
   xmlns:snm="class:/spiralcraft/net/mime/"
   xmlns:j="class:/java/lang/"
   xmlns:json="class:/spiralcraft/json/"
+  xmlns:wapi="class:/spiralcraft/webapi/"
   >
   <logLevel>INFO
   </logLevel>
   
   <filters>
+  
+    <af:GuardFilter>
+      <authenticate>true
+      </authenticate>
+      <bypassPaths>.hello
+      </bypassPaths>
+      <bypassPaths>.login
+      </bypassPaths>
+      <responseCode>401
+      </responseCode>
+      <messageX>"API Authorization required"
+      </messageX>
+    </af:GuardFilter>
     
     <rpc:Filter>
       
@@ -27,6 +41,7 @@
       </defaultX>
       
       <handlers>
+        <HelloHandler/>
         <rpc:BasicHandler>
           <name>foo
           </name>

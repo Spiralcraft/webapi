@@ -1,0 +1,17 @@
+<base:PathContext
+  xmlns:base="context://package-base/"
+  xmlns:af="class:/spiralcraft/servlet/autofilter/"
+  xmlns:config="context://config/"
+  xmlns:swa-config="context://code/spiralcraft-webapp/config/"
+  xmlns:sec="class:/spiralcraft/security/auth/"
+  xmlns:sa="class:/spiralcraft/servlet/auth/"
+  xmlns:wapi="class:/spiralcraft/webapi/"
+  >
+  
+  <preFilters>
+    
+    <sa:Filter/>
+    <wapi:Filter/>
+  </preFilters>
+
+</base:PathContext>

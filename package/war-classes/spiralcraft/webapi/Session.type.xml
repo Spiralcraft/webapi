@@ -1,0 +1,14 @@
+<meta:Type
+  xmlns:meta="class:/spiralcraft/data/types/meta/"
+  >
+  <description>An authentication session
+  </description>
+  <fields>
+    <meta:Field>
+      <name>id
+      </name>
+      <type><String.type/>
+      </type>
+    </meta:Field>  
+  </fields>
+</meta:Type>

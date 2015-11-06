@@ -1,0 +1,7 @@
+<af:SessionStateFilter
+  xmlns:af="class:/spiralcraft/servlet/autofilter/"
+  xmlns:wapi="class:/spiralcraft/webapi/"
+  >
+  <constructor>[@wapi:Session].(id:="12345")
+  </constructor>
+</af:SessionStateFilter>
