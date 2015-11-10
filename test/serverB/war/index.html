@@ -25,31 +25,6 @@
       </li>
       <li data-sc-context="test-item">
         <script type="sc-context">
-          SPIRALCRAFT.api.post(
-            "echo"
-            ,function(r) { this.data=r; this.dataChanged(); }.bind(this)
-            ,"Echo worked!"
-            );
-        </script>
-        <Input type="text" data-sc-bind='this.context("test-item").data'
-          data-sc-bind-setter="alert(value)"
-        />
-      </li>
-      <li data-sc-context="test-item">
-        <script type="sc-context">
-          SPIRALCRAFT.api.post(
-            "echo"
-            ,function(r) { this.data=r; this.dataChanged(); }.bind(this)
-            ,"Echo worked!"
-            );
-        </script>
-        <div data-sc-bind='this.context("test-item").data'>
-        </div>
-          
-        
-      </li>
-      <li data-sc-context="test-item">
-        <script type="sc-context">
           SPIRALCRAFT.api.postJSON(
             "echoJSON"
             ,function(r) { this.data=r; this.dataChanged(); }.bind(this)

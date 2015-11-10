@@ -40,9 +40,13 @@
     </af:GuardFilter>
     
     <rpc:Filter>
+      <reflectOriginHeader>true
+      </reflectOriginHeader>
       
       <headers>
-        <snm:MimeHeader>Access-Control-Allow-Origin: *
+        <snm:MimeHeader>Access-Control-Allow-Credentials: true
+        </snm:MimeHeader>
+        <snm:MimeHeader>Access-Control-Allow-Headers: Content-Type, *
         </snm:MimeHeader>
       </headers>
       <defaultX>

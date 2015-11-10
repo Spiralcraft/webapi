@@ -3,6 +3,8 @@
   xmlns:wapi="class:/spiralcraft/webapi/"
   xmlns:task="class:/spiralcraft/task/"
   xmlns:j="class:/java/lang/"
+  xmlns:jsec="class:/java/security/"
+  xmlns:scdc="class:/spiralcraft/codec/text/"
   >
   <name>.login
   </name>
@@ -22,7 +24,25 @@
          ?[rpc:Call].respond(400,"salt is required")
          :digest==null
          ?[rpc:Call].respond(400,"digest is required")
-         :null
+         :{ 
+             message:=
+               [wapi:Session].subscription.apiKey
+                 +userId
+                 +[wapi:Session].id
+                 +salt
+                 +[wapi:Session].subscription.sharedSecret
+             ,digest:=[@scdc:HexCodec].@encodeHex
+                        ([@jsec:MessageDigest].@getInstance("SHA-256")
+                          .digest(.message.@log("Message: "+.).getBytes("UTF-8"))
+                        ).@log("Digest: "+.)
+             ,success:=digest==[p].digest
+               
+           }.success
+          ?[rpc:Call].respond(200,"")
+          :[rpc:Call].respond(400,"Digest verification failed")
+           
+           
+         
       </x>
     </task:Eval>
   </task>

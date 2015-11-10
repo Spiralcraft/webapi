@@ -74,14 +74,31 @@ SPIRALCRAFT.api = (function(self) {
   
 
   self.testLogin = (function() {
-    self.login("exampleUser123","my-random-salt","my-digest");
+    var userId="exampleUser123";
+    var salt="my-random-salt";
+    var sharedSecret="my-shared-secret";
+    var message=
+      self.apiKey
+      +userId
+      +self.sessionId
+      +salt
+      +sharedSecret;
+    var digest=
+      SPIRALCRAFT.SHA256.digestUTF8(
+        SPIRALCRAFT.UTF8.decode(message)
+      );  
+    console.log(message);
+    console.log(digest);
+    self.login(userId,salt,digest);
 
   });
 
   return self;
 }(SPIRALCRAFT.api || {}));
 
-
+SPIRALCRAFT.http.configureXHR = function(request) {
+  request.withCredentials=true;
+}
 
 //
 // When this JS file is loaded, process the dom to create all the bindings
