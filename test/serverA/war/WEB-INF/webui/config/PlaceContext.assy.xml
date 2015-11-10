@@ -1,9 +1,9 @@
 <base:PlaceContext
   xmlns:base="context://package-base/config/"
-  xmlns:webapi="context://code/spiralcraft-webapi/config/"
+  xmlns:wapi="context://code/spiralcraft-webapi/config/"
   >
   <plugins>
-    <webapi:Plugin/>
+    <wapi:Plugin/>
     <ExtAuthPlugin/>
   </plugins>
 </base:PlaceContext>

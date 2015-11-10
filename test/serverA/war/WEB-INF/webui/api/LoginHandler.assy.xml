@@ -1,0 +1,29 @@
+<rpc:JsonTaskHandler
+  xmlns:rpc="class:/spiralcraft/servlet/rpc/"
+  xmlns:wapi="class:/spiralcraft/webapi/"
+  xmlns:task="class:/spiralcraft/task/"
+  xmlns:j="class:/java/lang/"
+  >
+  <name>.login
+  </name>
+  <task>        
+    <task:Eval>
+      <contextX>
+        [#p] 
+        { 
+          userId:[@j:String]
+          ,salt:[@j:String]
+          ,digest:[@j:String]
+        }
+      </contextX>
+      <x>userId==null
+         ?[rpc:Call].respond(400,"userId is required")
+         :salt==null
+         ?[rpc:Call].respond(400,"salt is required")
+         :digest==null
+         ?[rpc:Call].respond(400,"digest is required")
+         :null
+      </x>
+    </task:Eval>
+  </task>
+</rpc:JsonTaskHandler>

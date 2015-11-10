@@ -11,7 +11,9 @@
   <preFilters>
     
     <sa:Filter/>
-    <wapi:Filter/>
   </preFilters>
 
+  <filters>
+    <wapi:Filter/>
+  </filters>
 </base:PathContext>

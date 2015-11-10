@@ -24,6 +24,9 @@
     <copy file="../../packages/spiralcraft-webapi.zip"
         todir="../serverA/war/WEB-INF/packages"
     />
+    <copy file="../../packages/spiralcraft-jsclient.zip"
+        todir="../serverA/war/WEB-INF/packages"
+    />
     <devgui
       launchArgs="${launchArgs}"
       env="httpd"

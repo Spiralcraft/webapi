@@ -1,5 +1,7 @@
 <meta:Type
   xmlns:meta="class:/spiralcraft/data/types/meta/"
+  xmlns:wapi="class:/spiralcraft/webapi/"
+  xmlns:j="class:/java/lang/"
   >
   <description>An authentication session
   </description>
@@ -10,5 +12,44 @@
       <type><String.type/>
       </type>
     </meta:Field>  
+    <meta:Field>
+      <name>subscriptionId
+      </name>
+      <type><String.type/>
+      </type>
+    </meta:Field>  
+    <meta:RelativeField>
+      <name>subscription
+      </name>
+      <type><wapi:Subscription.type/>
+      </type>
+      <fieldList>subscriptionId
+      </fieldList>
+    </meta:RelativeField>
   </fields>
+  <methods>
+    <meta:Method>
+      <name>checkSubscription
+      </name>
+      <parameterTypes>
+        <String.type/>
+      </parameterTypes>
+      <returnType>
+        <wapi:Subscription.type/>
+      </returnType>
+      <contextX>
+        [#p] { apiKey:[@j:String] }
+      </contextX>
+      <x>
+        [wapi:Session].subscriptionId==null
+          ?@{ [wapi:Session].subscriptionId
+                =[@wapi:Subscription].@forApiKey([p].apiKey).id
+              ,[wapi:Session].subscription
+            }    
+          :[wapi:Session].subscription
+             { .apiKey==[p].apiKey?.:null
+             }
+      </x>
+    </meta:Method>
+  </methods>
 </meta:Type>

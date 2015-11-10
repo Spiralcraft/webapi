@@ -1,5 +1,8 @@
 <meta:Type
   xmlns:meta="class:/spiralcraft/data/types/meta/"
+  xmlns:wapi="class:/spiralcraft/webapi/"
+  xmlns:j="class:/java/lang/"
+  xmlns:dt="class:/spiralcraft/data/task/"
   >
   <description>A Subscription represents the publishing of an API to one or 
     more clients via the use of a single API key.
@@ -25,4 +28,38 @@
       </type>
     </meta:Field>
   </fields>
+  <keys>
+    <meta:Key>
+      <fieldList>id
+      </fieldList>
+      <primary>true
+      </primary>
+    </meta:Key>
+    <meta:Key>
+      <fieldList>apiKey
+      </fieldList>
+      <unique>true
+      </unique>
+    </meta:Key>
+  </keys>
+  <methods>
+    <meta:Method>
+      <name>forApiKey
+      </name>
+      <static>true
+      </static>
+      <parameterTypes>
+        <String.type/>
+      </parameterTypes>
+      <returnType>
+        <wapi:Subscription.type/>
+      </returnType>
+      <contextX>
+        [#p] { apiKey:[@j:String] }
+      </contextX>
+      <x>
+        [*dt:Fetch{[@wapi:Subscription],`.apiKey==[p].apiKey`}].()
+      </x>
+    </meta:Method>
+  </methods>
 </meta:Type>

@@ -1,13 +1,16 @@
-<rpc:BasicHandler
+<rpc:JsonTaskHandler
   xmlns:rpc="class:/spiralcraft/servlet/rpc/"
   xmlns:wapi="class:/spiralcraft/webapi/"
+  xmlns:task="class:/spiralcraft/task/"
   >
   <name>.hello
   </name>
-  <x>        
-    @{ 
-       [rpc:Call].response.text=[wapi:Session].id
-       ,[rpc:Call].response.status=200
-    }
-  </x>
-</rpc:BasicHandler>
+  <task>
+    <task:Eval>
+      <x>        
+        { sessionId:=[wapi:Session].id
+        }
+      </x>
+    </task:Eval>
+  </task>
+</rpc:JsonTaskHandler>

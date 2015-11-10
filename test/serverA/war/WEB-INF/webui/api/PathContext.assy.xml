@@ -15,6 +15,18 @@
   <filters>
   
     <af:GuardFilter>
+       <guardX>
+         [wapi:Session]
+           .checkSubscription([http:HttpServletRequest].getParameter("apikey"))
+           !=null
+       </guardX>
+       <responseCode>401
+       </responseCode>
+       <messageX>"Authentication Failed: Invalid or missing API Key"
+       </messageX>
+    </af:GuardFilter>
+
+    <af:GuardFilter>
       <authenticate>true
       </authenticate>
       <bypassPaths>.hello
@@ -23,7 +35,7 @@
       </bypassPaths>
       <responseCode>401
       </responseCode>
-      <messageX>"API Authorization required"
+      <messageX>"API Authentication Required"
       </messageX>
     </af:GuardFilter>
     
@@ -42,6 +54,7 @@
       
       <handlers>
         <HelloHandler/>
+        <LoginHandler/>
         <rpc:BasicHandler>
           <name>foo
           </name>

@@ -4,7 +4,7 @@
   <head>
     <script src="/js/spiralcraft-jsclient/spiralcraft.js">
     </script>
-    <script src="apiClient.js">
+    <script src="spiralcraft-api.js">
     </script>
     <script lang="javascript">
       SPIRALCRAFT.start();
@@ -15,6 +15,14 @@
       <li><Input type="text" data-sc-bind='this.element().scnid'/></li>
       <li><Input type="text" data-sc-bind='this.element().scnid'/></li>
       
+      <li data-sc-context="test-item">
+        <Button onClick='SPIRALCRAFT.api.hello()'>
+          Hello
+        </Button>
+        <Button onClick='SPIRALCRAFT.api.testLogin()'>
+          Login
+        </Button>
+      </li>
       <li data-sc-context="test-item">
         <script type="sc-context">
           SPIRALCRAFT.api.post(
