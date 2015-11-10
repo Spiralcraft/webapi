@@ -74,7 +74,7 @@ SPIRALCRAFT.api = (function(self) {
   
 
   self.testLogin = (function() {
-    var userId="exampleUser123";
+    var userId="exampleUser456";
     var salt="my-random-salt";
     var sharedSecret="my-shared-secret";
     var message=

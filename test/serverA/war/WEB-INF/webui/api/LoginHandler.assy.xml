@@ -5,6 +5,7 @@
   xmlns:j="class:/java/lang/"
   xmlns:jsec="class:/java/security/"
   xmlns:scdc="class:/spiralcraft/codec/text/"
+  xmlns:api="context://code/api/"
   >
   <name>.login
   </name>
@@ -35,14 +36,13 @@
                         ([@jsec:MessageDigest].@getInstance("SHA-256")
                           .digest(.message.@log("Message: "+.).getBytes("UTF-8"))
                         ).@log("Digest: "+.)
-             ,success:=digest==[p].digest
+             ,validSig:=digest==[p].digest
                
-           }.success
+           }.validSig!=true
+          ?[rpc:Call].respond(400,"Digest verification failed")
+          :[*api:Authenticate].(userId)
           ?[rpc:Call].respond(200,"")
-          :[rpc:Call].respond(400,"Digest verification failed")
-           
-           
-         
+          :[rpc:Call].respond(400,"Authentication Failed")
       </x>
     </task:Eval>
   </task>
