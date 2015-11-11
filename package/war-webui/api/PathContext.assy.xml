@@ -1,0 +1,7 @@
+<af:PathContext
+  xmlns:af="class:/spiralcraft/servlet/autofilter/"
+  >
+  <guardX>false
+  </guardX>
+
+</af:PathContext>

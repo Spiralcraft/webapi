@@ -1,0 +1,9 @@
+<vfs:Package
+  xmlns:vfs="class:/spiralcraft/vfs/"
+  >
+  <base>context://code/spiralcraft-webapi/api/extorigin
+  </base>
+  
+  <logLevel>INFO
+  </logLevel>
+</vfs:Package>
