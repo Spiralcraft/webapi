@@ -40,7 +40,7 @@
                
            }.validSig!=true
           ?[rpc:Call].respond(400,"Digest verification failed")
-          :[*api:Authenticate].(userId)
+          :[wapi:APIContext].authenticate(userId)
           ?[rpc:Call].respond(200,"")
           :[rpc:Call].respond(400,"Authentication Failed")
       </x>

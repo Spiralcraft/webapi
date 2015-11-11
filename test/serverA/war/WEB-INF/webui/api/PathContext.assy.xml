@@ -1,6 +1,9 @@
 <base:PathContext
   xmlns:base="context://package-base/"
+  xmlns:wapi="class:/spiralcraft/webapi/"
   >
 
-
+  <exports>
+    [@wapi:APIContext].()
+  </exports>
 </base:PathContext>

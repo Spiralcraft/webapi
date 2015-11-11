@@ -1,0 +1,116 @@
+<meta:Type
+  xmlns:meta="class:/spiralcraft/data/types/meta/"
+  xmlns:wapi="class:/spiralcraft/webapi/"
+  xmlns:j="class:/java/lang/"
+  xmlns:sa="class:/spiralcraft/servlet/auth/"
+  xmlns:sec="class:/spiralcraft/security/"
+  xmlns:seca="class:/spiralcraft/security/auth/"
+  xmlns:util="class:/spiralcraft/util/"
+  xmlns:swm="class:/spiralcraft/webapp/meta/"
+  xmlns:dt="class:/spiralcraft/data/task/"
+  >
+  <methods>
+    <meta:Method>
+      <name>authenticate
+      </name>
+      
+      <parameterTypes>
+        <String.type/>
+      </parameterTypes>
+      
+      <returnType>
+        <Boolean.type/>
+      </returnType>
+    
+		  <contextX>
+		    [#p] { userId:[@j:String]
+		    }
+		  </contextX>
+		  
+		  <x>
+		    {
+		      authResult
+		        :=[p].userId!=null
+		          ?@{ 
+		              [sa:Filter].applyCredentials([wapi:Session].subscriptionId,[p].userId)
+		              ,[seca:AuthSession].authenticate()
+		              ,[seca:AuthSession].authenticated
+		            }
+		          :false
+		      ,regResult
+		        :=[p].userId
+		          { .!=null &amp;&amp; !..authResult
+		              ?[.]
+		                { [wapi:APIContext].register(.)
+		                , [sa:Filter].clearSession()
+		                , [seca:AuthSession].clearCredentials()
+		                , [sa:Filter].applyCredentials([wapi:Session].subscriptionId,.)
+		                , [seca:AuthSession].authenticate()
+		                , [seca:AuthSession].authenticated
+		                }
+		              :false
+		          }
+		    }
+		    { [seca:AuthSession].authenticated
+		    }
+		  </x>      
+    </meta:Method>
+  
+    <meta:TransactionMethod>
+      <name>register
+      </name>
+    
+      <parameterTypes>
+        <String.type/>
+      </parameterTypes>
+      
+      <returnType>
+        <Boolean.type/>
+      </returnType>
+    
+		  <contextX>
+		    [#p]
+		    { userId:[@j:String]
+		    }
+		  </contextX>
+
+      <x>
+        [#reg] 
+        {
+          login:=[@sec:Login].@register
+            ([seca:Authenticator].digestFunction
+            ,"extapi-"+[wapi:Session].subscriptionId+"-"+[p].userId
+            ,[@util:RandomUtil].@generateString(16)
+            )
+          ,user:=
+            [*dt:Edit
+              {[@swm:User].type
+              ,forceSave:=true
+              ,preSave:=`
+                @{ .commonName=[reg].login.username
+                  ,.principalName=.commonName
+                  ,.principalId=[reg].login.principalId
+                }
+                `
+              }
+            ].()
+          ,authToken:=
+            [*dt:Edit
+              {[@sa:AuthToken].type
+              ,forceSave:=true
+              ,preSave:=`
+                @{ .token=[p].userId
+                  ,.systemId=[wapi:Session].subscriptionId
+                  ,.extId=[p].userId
+                  ,.principalId=[reg].login.principalId
+                }
+                `
+              }
+            ].()
+          }.user!=null
+      </x>
+    
+       
+    </meta:TransactionMethod>
+  </methods>
+</meta:Type>
