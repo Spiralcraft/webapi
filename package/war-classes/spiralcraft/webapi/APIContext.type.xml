@@ -9,7 +9,19 @@
   xmlns:swm="class:/spiralcraft/webapp/meta/"
   xmlns:dt="class:/spiralcraft/data/task/"
   >
+  <fields>
+    <meta:CalculatedField>
+      <name>authSystemId
+      </name>
+      <type><String.type/>
+      </type>
+      <expression>"extapi-"+[wapi:Session].subscriptionId
+      </expression>
+    </meta:CalculatedField>
+  </fields>
   <methods>
+  
+    
     <meta:Method>
       <name>authenticate
       </name>
@@ -32,7 +44,7 @@
 		      authResult
 		        :=[p].userId!=null
 		          ?@{ 
-		              [sa:Filter].applyCredentials([wapi:Session].subscriptionId,[p].userId)
+		              [sa:Filter].applyCredentials([wapi:APIContext].authSystemId,[p].userId)
 		              ,[seca:AuthSession].authenticate()
 		              ,[seca:AuthSession].authenticated
 		            }
@@ -44,7 +56,7 @@
 		                { [wapi:APIContext].register(.)
 		                , [sa:Filter].clearSession()
 		                , [seca:AuthSession].clearCredentials()
-		                , [sa:Filter].applyCredentials([wapi:Session].subscriptionId,.)
+		                , [sa:Filter].applyCredentials([wapi:APIContext].authSystemId,.)
 		                , [seca:AuthSession].authenticate()
 		                , [seca:AuthSession].authenticated
 		                }
@@ -100,7 +112,7 @@
               ,forceSave:=true
               ,preSave:=`
                 @{ .token=[p].userId
-                  ,.systemId=[wapi:Session].subscriptionId
+                  ,.systemId=[wapi:APIContext].authSystemId
                   ,.extId=[p].userId
                   ,.principalId=[reg].login.principalId
                 }
