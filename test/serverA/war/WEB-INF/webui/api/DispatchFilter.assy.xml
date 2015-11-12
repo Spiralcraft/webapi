@@ -1,0 +1,135 @@
+<base:DispatchFilter
+  xmlns:base="context://package-base/"
+  xmlns:wapi="class:/spiralcraft/webapi/"
+  xmlns:rpc="class:/spiralcraft/servlet/rpc/"
+  xmlns:task="class:/spiralcraft/task/"
+  xmlns:ju="class:/java/util/"
+  xmlns:j="class:/java/lang/"
+  xmlns:json="class:/spiralcraft/json/"
+  xmlns:http="class:/javax/servlet/http/"
+  >
+  <handlers>
+    <rpc:BasicHandler>
+      <name>foo
+      </name>
+      <x>
+        @{ 
+          [rpc:Call].response.text="Foo reporting!"
+          ,[rpc:Call].response.status=200
+        }
+      </x>
+    </rpc:BasicHandler>
+    <rpc:BasicHandler>
+      <name>bar
+      </name>
+      <x>
+        @{ 
+          [rpc:Call].response.text="Bar reporting!"
+          ,[rpc:Call].response.status=200
+        }
+      </x>
+    </rpc:BasicHandler>
+    <rpc:TaskHandler>
+      <name>noop
+      </name>
+      <task>
+        <task:Eval>
+          <x>@log("noop")
+          </x>
+        </task:Eval>
+      </task>
+    </rpc:TaskHandler>
+    <rpc:TaskHandler>
+      <name>timestamp
+      </name>
+      <task>
+        <task:Eval>
+          <x>[@ju:Date].().time
+          </x>
+        </task:Eval>
+      </task>
+      <outputX>[rpc:Call].response.text=.toString()
+      </outputX>
+    </rpc:TaskHandler>
+    <rpc:TaskHandler>
+      <name>requestURI
+      </name>
+      <task>
+        <task:Eval>
+          <contextX>""
+          </contextX>
+          <x>.
+          </x>
+        </task:Eval>
+      </task>
+      <inputX>[rpc:Call].request.URI
+      </inputX>
+      <outputX>[rpc:Call].response.text=.
+      </outputX>
+    </rpc:TaskHandler>
+    <rpc:TaskHandler>
+      <name>sessionId
+      </name>
+      <task>
+        <task:Eval>
+          <contextX>[@http:HttpSession].@nil
+          </contextX>
+          <x>.
+          </x>
+        </task:Eval>
+      </task>
+      <inputX>[rpc:Call].request.getSession(true)
+      </inputX>
+      <outputX>[rpc:Call].response.text=.id
+      </outputX>
+    </rpc:TaskHandler>
+    <rpc:TaskHandler>
+      <name>echo
+      </name>
+      <task>
+        <task:Eval>
+          <contextX>""
+          </contextX>
+          <x>.
+          </x>
+        </task:Eval>
+      </task>
+      <inputX>
+        [rpc:Call].request.contentBytes
+          { .!=null
+            ?[@j:String].(.)
+            :""
+          }.@log("In= "+.)
+      </inputX>
+      <outputX>[rpc:Call].response.text=.@log("Out="+.)
+      </outputX>
+    </rpc:TaskHandler>
+    <rpc:TaskHandler>
+      <name>echoJSON
+      </name>
+      <task>
+        <task:Eval>
+          <contextX>
+            [#p] 
+            { field1:[@j:String]
+            , field2:[@j:Integer]
+            , field3:[@j:Boolean]
+            }
+          </contextX>
+          <x>[p]
+          </x>
+        </task:Eval>
+      </task>
+      <inputX>
+        [rpc:Call].request.contentBytes.@log("Bytes = "+.)
+          { .!=null
+            ?.[*json:FromJson{[p].@type,ignoreUnrecognizedFields:=true}]
+            :[p]
+          }.@log("In= "+.)
+      </inputX>
+      <outputX>[rpc:Call].response.text=.[*json:ToJson].@log("Out="+.)
+      </outputX>
+    </rpc:TaskHandler>
+  </handlers>
+
+</base:DispatchFilter>

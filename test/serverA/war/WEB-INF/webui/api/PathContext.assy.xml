@@ -6,4 +6,8 @@
   <exports>
     [@wapi:APIContext].()
   </exports>
+  
+  <filters>
+     <DispatchFilter/>
+  </filters>
 </base:PathContext>

@@ -1,0 +1,26 @@
+<rpc:Filter
+  xmlns:rpc="class:/spiralcraft/servlet/rpc/"
+  xmlns:af="class:/spiralcraft/servlet/autofilter/"
+  xmlns:snm="class:/spiralcraft/net/mime/"
+  >
+  <reflectOriginHeader>true
+  </reflectOriginHeader>
+  
+  <headers>
+    <snm:MimeHeader>Access-Control-Allow-Credentials: true
+    </snm:MimeHeader>
+    <snm:MimeHeader>Access-Control-Allow-Headers: Content-Type, *
+    </snm:MimeHeader>
+  </headers>
+  <defaultX>
+    @{ 
+      [rpc:Call].response.text=[af:PathContext].pathInfo+" not found"
+      ,[rpc:Call].response.status=404
+    }
+  </defaultX>
+  
+  <handlers>
+    <HelloHandler/>
+    <LoginHandler/>
+  </handlers>
+</rpc:Filter>
