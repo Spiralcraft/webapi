@@ -3,8 +3,7 @@
 	
   <property name="organization" value="spiralcraft"/>
   <property name="module" value="webapi"/>
-  <property name="buildVersion" value="0.4.17-dev1"/>
-  <property name="build.status" value="integration"/>
+	<property file="version.properties"/>
 
   <property name="publish.resolver.type" value="distrib"/>  
   <property name="package.spiralcraft-jsclient.dest" value="lib"/>
