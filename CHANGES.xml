@@ -1,0 +1,35 @@
+<scm:Change.list
+  xmlns:scm="class:/spiralcraft/scm/meta/"
+  >
+  
+  <scm:Change>
+  
+    <revision>0.4.17
+    </revision>
+
+    <authorId>miketoth
+    </authorId>
+    
+    <date>
+    </date>
+
+
+    <detail>
+      <scm:Change>
+        <revision>-dev2
+        </revision>
+                
+        <notes>
+          <scm:Note>Permit pass-through operation so web tree can be used
+            to define API paths.
+          </scm:Note>
+        </notes>
+
+        <path>package/war-webui/api/extorigin/DispatchFilter.assy.xml
+        </path>
+
+      </scm:Change>
+    </detail>
+  </scm:Change>
+</scm:Change.list>
+
