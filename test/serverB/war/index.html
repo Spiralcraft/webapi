@@ -26,7 +26,8 @@
       </li>
       <li data-sc-context="test-item">
         <script type="sc-context">
-          SPIRALCRAFT.api.postJSON(
+          this.test=function() {
+            SPIRALCRAFT.api.postJSON(
             "echoJSON"
             ,function(r) { this.data=r; this.dataChanged(); }.bind(this)
             ,{ field1: "value1"
@@ -37,7 +38,13 @@
               , field6: [1,2,3,4,5]
              }
             );
+            
+          };
         </script>
+        <Button onClick='$SC(this).context("test-item").test()'>
+          Test
+        </Button>
+        <div>
         JSON Echo:
         <ul>
           <li>
@@ -56,6 +63,71 @@
 		          </label>
 		      </li>
         </ul>
+        </div>
+          
+        
+      </li>
+      <li data-sc-context="test-item">
+        <script type="sc-context">
+          this.test=function() {
+            SPIRALCRAFT.api.postJSON(
+            "sub1/echoJSON"
+            ,function(r) { this.data=r; this.dataChanged(); }.bind(this)
+            ,{ field1: "value1"
+              , field2: 2002
+              , field3: false
+              , field4: { f41:"subobj", f42:42 }
+              , field5: ["hello","goodbye"]
+              , field6: [1,2,3,4,5]
+             }
+            );
+            
+          };
+        </script>
+        <Button onClick='$SC(this).context("test-item").test()'>
+          Test
+        </Button>
+        <div>
+        JSON Echo:
+        <ul>
+          <li>
+            Field1: 
+              <label data-sc-bind='this.context("test-item").data.field1'>
+              </label>
+          </li>
+          <li>
+            Field2: 
+              <label data-sc-bind='this.context("test-item").data.field2'>
+              </label>
+          </li>
+          <li>
+            Field3: 
+              <label data-sc-bind='this.context("test-item").data.field3'>
+              </label>
+          </li>
+        </ul>
+        </div>
+          
+        
+      </li>
+      <li data-sc-context="test-item">
+        <script type="sc-context">
+          this.test=function() {
+            SPIRALCRAFT.api.getJSON(
+            "sub1/.listing"
+            ,function(r) { this.data=r; this.dataChanged(); }.bind(this)
+            );
+            
+          };
+        </script>
+        <Button onClick='$SC(this).context("test-item").test()'>
+          Dir
+        </Button>
+        <div>
+        Dir:
+          <label data-sc-bind='SPIRALCRAFT.json.stringify(this.context("test-item").data)'>
+          </label>
+        </div>
           
         
       </li>

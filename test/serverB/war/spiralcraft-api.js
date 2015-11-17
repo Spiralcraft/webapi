@@ -54,7 +54,7 @@ SPIRALCRAFT.api = (function(self) {
   self.hello = (function() { 
     self.getJSON(
         ".hello"
-        ,function(r) { SPIRALCRAFT.api.sessionId = r.sessionId; alert(r.sessionId); }
+        ,function(r) { SPIRALCRAFT.api.sessionId = r.sessionId;  }
         );
     
   });
@@ -74,6 +74,7 @@ SPIRALCRAFT.api = (function(self) {
   
 
   self.testLogin = (function() {
+    self.hello();
     var userId="exampleUser456";
     var salt="my-random-salt";
     var sharedSecret="my-shared-secret";

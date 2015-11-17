@@ -12,12 +12,7 @@
     <snm:MimeHeader>Access-Control-Allow-Headers: Content-Type, *
     </snm:MimeHeader>
   </headers>
-  <defaultX>
-    @{ 
-      [rpc:Call].response.text=[af:PathContext].pathInfo+" not found"
-      ,[rpc:Call].response.status=404
-    }
-  </defaultX>
+
   
   <handlers>
     <HelloHandler/>

@@ -1,0 +1,53 @@
+<rpc:Filter
+  xmlns:wapi="class:/spiralcraft/webapi/"
+  xmlns:rpc="class:/spiralcraft/servlet/rpc/"
+  xmlns:task="class:/spiralcraft/task/"
+  xmlns:ju="class:/java/util/"
+  xmlns:j="class:/java/lang/"
+  xmlns:json="class:/spiralcraft/json/"
+  xmlns:http="class:/javax/servlet/http/"
+  xmlns:vfsf="class:/spiralcraft/vfs/functions/"
+  xmlns:vfsfi="class:/spiralcraft/vfs/file/"
+  >
+  <handlers>
+
+    <rpc:JsonTaskHandler>
+      <name>echoJSON
+      </name>
+      <task>
+        <task:Eval>
+          <contextX>
+            [#p] 
+            { field1:[@j:String]
+            , field2:[@j:Integer]
+            , field3:[@j:Boolean]
+            , field4:={ f41:="", f42:=0 }
+            , field5:[@j:String][]
+            , field6:[@j:Integer][]
+            }
+          </contextX>
+          <x>[p]
+          </x>
+        </task:Eval>
+      </task>
+
+    </rpc:JsonTaskHandler>
+    <rpc:JsonTaskHandler>
+      <name>.listing
+      </name>
+      <task>
+        <task:Eval>
+          <x>"context:/".[*vfsf:Resolve].children
+                #{ 
+                   { name:=..localName
+                   , size:=..size
+                   , lastModified:=..lastModified 
+                   } 
+                 }
+          </x>
+        </task:Eval>
+      </task>
+    </rpc:JsonTaskHandler>
+  </handlers>
+
+</rpc:Filter>

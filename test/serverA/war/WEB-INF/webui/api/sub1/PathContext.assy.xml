@@ -1,0 +1,11 @@
+<af:PathContext
+  xmlns:af="class:/spiralcraft/servlet/autofilter/"
+  xmlns:wapi="class:/spiralcraft/webapi/"
+  >
+
+
+  
+  <filters>
+     <DispatchFilter/>
+  </filters>
+</af:PathContext>
