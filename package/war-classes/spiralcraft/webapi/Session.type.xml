@@ -13,6 +13,12 @@
       </type>
     </meta:Field>  
     <meta:Field>
+      <name>requested
+      </name>
+      <type><Boolean.type/>
+      </type>
+    </meta:Field>  
+    <meta:Field>
       <name>subscriptionId
       </name>
       <type><String.type/>

@@ -25,6 +25,8 @@
          ?[rpc:Call].respond(400,"salt is required")
          :digest==null
          ?[rpc:Call].respond(400,"digest is required")
+         :[wapi:Session].requested!=true
+         ?[rpc:Call].respond(400,"session not initialized")
          :{ 
              message:=
                [wapi:Session].subscription.apiKey
@@ -36,7 +38,8 @@
                         ([@jsec:MessageDigest].@getInstance("SHA-256")
                           .digest(.message.@log("Message: "+.).getBytes("UTF-8"))
                         ).@log("Digest: "+.)
-             ,validSig:=digest==[p].digest
+             ,validSig:=.digest==[p].digest
+             ,.@log("Param Digest = "+[p].digest)
                
            }.validSig!=true
           ?[rpc:Call].respond(400,"Digest verification failed")

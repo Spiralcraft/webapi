@@ -2,6 +2,7 @@
   xmlns:rpc="class:/spiralcraft/servlet/rpc/"
   xmlns:wapi="class:/spiralcraft/webapi/"
   xmlns:task="class:/spiralcraft/task/"
+  xmlns:http="class:/javax/servlet/http/"
   >
   <name>.hello
   </name>
@@ -9,6 +10,10 @@
     <task:Eval>
       <x>        
         { sessionId:=[wapi:Session].id
+        , sessionToken:=[http:HttpSession].id
+        }
+        { [wapi:Session].requested=true
+        , .
         }
       </x>
     </task:Eval>
