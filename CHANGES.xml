@@ -16,6 +16,28 @@
 
     <detail>
       <scm:Change>
+        <revision>-dev3
+        </revision>
+                
+        <notes>
+          <scm:Note>Support explicit session token passed via URL parameter
+          </scm:Note>
+        </notes>
+
+        <path>package
+        </path>
+
+        <resources>
+          <URI>war-classes/spiralcraft/webapi/Session.type.xml
+          </URI>
+          <URI>war-webui/extorigin/HelloHandler.assy.xml
+          </URI>
+          <URI>war-webui/extorigin/LoginHandler.assy.xml
+          </URI>
+        </resources>
+      </scm:Change>
+
+      <scm:Change>
         <revision>-dev2
         </revision>
                 
