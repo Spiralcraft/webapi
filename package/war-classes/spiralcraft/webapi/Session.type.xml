@@ -17,12 +17,15 @@
       </name>
       <type><Boolean.type/>
       </type>
-    </meta:Field>  
+    </meta:Field>
     <meta:Field>
       <name>subscriptionId
       </name>
       <type><String.type/>
       </type>
+      <description>The id of the subscription associated with the API key used for
+        this session.
+      </description>
     </meta:Field>  
     <meta:RelativeField>
       <name>subscription
@@ -31,6 +34,9 @@
       </type>
       <fieldList>subscriptionId
       </fieldList>
+      <description>The subscription associated with the API key used for this
+        session.
+      </description>
     </meta:RelativeField>
   </fields>
   <methods>
